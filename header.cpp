@@ -9,17 +9,18 @@ using namespace std;
 void header::writeLine(string fileName)
 {
 	string line;
+	char temp;
 	ifstream myfile (fileName);
-	if(myfile.is_open())
-	{
-		while(getline(myfile,line))
-		{
-			cout << line << endl;
+
+	if(myfile.is_open()) {
+		while (myfile >> temp) {
+			if (temp == '*') {
+				getline(myfile, line);
+				cout << line << endl;
+			}
 		}
 		myfile.close();
-	}
-	else
-	{
+	} else {
 		cout << "Unable to open file" << endl;
 	}
 }
